@@ -3676,6 +3676,8 @@ let
       substituteInPlace test-requirements.txt --replace 'nose==1.3' 'nose'
     '';
 
+    __sandboxProfile = pkgs.lib.sandbox.allowNetwork;
+
     doCheck = !isPy3k;  # lots of transient failures
     checkPhase = ''
       # Not worth the trouble
@@ -6464,6 +6466,8 @@ let
       url = "https://pypi.python.org/packages/source/d/dulwich/${name}.tar.gz";
       sha256 = "02rknqarwy7p50693cqswbibqwgxzrfzdq4yhwqxbdmhbsmh0rk6";
     };
+
+    __sandboxProfile = pkgs.lib.sandbox.allowNetwork;
 
     # Only test dependencies
     buildInputs = with self; [ pkgs.git gevent geventhttpclient mock fastimport ];
